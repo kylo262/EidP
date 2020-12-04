@@ -11,11 +11,12 @@ def input_choice(q: str, a: list[str]) -> str: #Aufgabenteil (a)
         else:
             pos += i + "|"
     print(q, pos)
-    ans = input()
-    if ans in a:
-        return ans
-    else:
-        print("Invalid answer. Try again.")
+    ans = ""
+    while ans not in a:
+        ans = input()
+        if ans not in a:
+            print("Invalid answer. Try again.")
+    return ans
 
 
 def shape(word: str, guesses: str): #Aufgabenteil (b)
@@ -41,8 +42,11 @@ def hangman(word: str, max_fails: int): #Aufgabenteil (c)
             max_fails -= 1
     n = shape(word, guesses)
     if word + ";" == n:
-        word = "'"+word+"!'"
+        word = "'" + word + "!'"
         print("You won! The word was", word, "You're the best! Everyone loves you!")
+    else:
+        word = "'" + word + "!'"
+        print("You lost! The word was", word, "You're the worst! Nobody loves you!")
 
 
 words = ['apple', 'tree', 'python', 'bench', 'float']
